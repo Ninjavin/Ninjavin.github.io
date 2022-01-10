@@ -23,14 +23,11 @@ author:
   name: Vineeta Jain
   image: https://pbs.twimg.com/profile_images/1344885463539097600/SljoaTgT_400x400.jpg
   email: vinjain2006@gmail.com
-  # facebook: your_username
   github: Ninjavin
-  # gitlab            : your_username
   instagram: n.i.n.j.a.v.i.n
   linkedin: vineeta-jain-085a11196
   medium: vinjain2006
   twitter: vineeta_vj
-# youtube           : your_channel_name
 
 ### Posts ###
 permalink: /blog/:title
