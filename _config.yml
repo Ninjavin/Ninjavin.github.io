@@ -1,9 +1,7 @@
 ### Site Settings ###
 title: Ninjavin
 description: >-
-  I turn coffee :coffee: into code,
-  use tabs over spaces
-  and never broke production.
+  My name is Vineeta. I'm in my final year. An engineer, a learner & a writer. I believe in the power of Indie folk music and MS Dhoni's last ball six.
 baseurl: "" # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
 # repository: Ninjavin/Ninjavin.github.io # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
 remote_theme: YoussefRaafatNasry/portfolYOU
