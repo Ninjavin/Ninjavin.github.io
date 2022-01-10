@@ -1,10 +1,10 @@
 ### Site Settings ###
-title: portfolYOU
+title: Ninjavin
 description: >-
   I turn coffee :coffee: into code,
   use tabs over spaces
   and never broke production.
-baseurl: "/portfolYOU" # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
+baseurl: "" # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
 # repository: Ninjavin/Ninjavin.github.io # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
 remote_theme: YoussefRaafatNasry/portfolYOU
 
@@ -20,27 +20,17 @@ nav_exclude: # The following paths are excluded from navbar
 
 ### Author Info ###
 author:
-  name: John Doe
-  image: https://i.imgur.com/uyDNQnn.jpg
-  # behance: your_username
-  # dribbble          : your_username
+  name: Vineeta Jain
+  image: https://pbs.twimg.com/profile_images/1344885463539097600/SljoaTgT_400x400.jpg
   email: vinjain2006@gmail.com
   # facebook: your_username
   github: Ninjavin
   # gitlab            : your_username
-  # instagram         : your_username
-  # kaggle            : your_username
-  # linkedin: your_username
-  # medium: your_username
-  # soundcloud        : your_username
-  # spotify           : your_username
-  # stackoverflow     : your_user_id
-  # tumblr            : your_username.tumblr.com
-  # twitch            : your_username
+  instagram: n.i.n.j.a.v.i.n
+  linkedin: vineeta-jain-085a11196
+  medium: vinjain2006
   twitter: vineeta_vj
-# vimeo             : your_username
 # youtube           : your_channel_name
-# keybase           : your_username
 
 ### Posts ###
 permalink: /blog/:title
