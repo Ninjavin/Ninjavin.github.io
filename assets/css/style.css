@@ -29,6 +29,18 @@
   transition: all 0.2s ease-in-out !important;
 }
 
+blockquote {
+  background: #f9f9f9;
+  border-left: 8px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+
+blockquote p {
+  display: inline;
+}
+
 .cls-1 {
   fill: #ffc541;
 }
