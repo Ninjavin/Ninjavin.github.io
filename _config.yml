@@ -1,7 +1,7 @@
 ### Site Settings ###
 title: Ninjavin
 description: >-
-  My name is Vineeta. I'm in my final year. An engineer, a learner & a writer. I believe in the power of Indie folk music and MS Dhoni's last ball six.
+  My name is Vineeta. I am a 2022 CSE graduate. An engineer, a learner & a writer. I believe in the power of Indie folk music and MS Dhoni's last ball six. I go by the name Ninjavin on the Internet.
 baseurl: "" # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
 # repository: Ninjavin/Ninjavin.github.io # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
 remote_theme: YoussefRaafatNasry/portfolYOU
@@ -19,13 +19,14 @@ nav_exclude: # The following paths are excluded from navbar
 ### Author Info ###
 author:
   name: Vineeta Jain
-  image: https://pbs.twimg.com/profile_images/1344885463539097600/SljoaTgT_400x400.jpg
+  image: https://pbs.twimg.com/profile_images/1534414319886118913/nfQzscbp_400x400.jpg
   email: vinjain2006@gmail.com
   github: Ninjavin
   instagram: n.i.n.j.a.v.i.n
   linkedin: vineeta-jain-085a11196
   medium: vinjain2006
   twitter: vineeta_vj
+  youtube: channel/UCMFbfArc69d8CG972hygWUg/
 
 ### Posts ###
 permalink: /blog/:title
