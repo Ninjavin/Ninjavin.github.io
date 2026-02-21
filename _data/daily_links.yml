@@ -1,0 +1,25 @@
+- date: 2026-02-22
+  title: "The Smarter Choice"
+  url: "https://dariusforoux.com/the-smarter-choice/"
+  description: "...is doing the hard thing"
+  type: "article"
+- date: 2026-02-21
+  title: "Reflections on 10,000 hours of programming"
+  url: "https://mattrickard.com/reflections-on-10-000-hours-of-programming"
+  description: "A list of 31 insights and hard-learned lessons on pure coding, focusing on technical mastery, simple design, and the art of deliberate practice."
+  type: "article"
+- date: 2026-02-20
+  title: "50 ideas that changed my life"
+  url: "https://perell.com/essay/50-ideas-that-changed-my-life/"
+  description: "These are some guiding principles and the light of one's intellectual life. All of them will help you think better, and I hope they inspire curiosity."
+  type: "article"
+- date: 2026-02-19
+  title: "Color Game"
+  url: "https://dialed.gg/"
+  description: "A fun game to test your color vision."
+  type: "tool"
+- date: 2026-02-18
+  title: "PRIDE. The Worst Sin"
+  url: "https://youtu.be/lZgzk070Rws?si=F7us1ypzg1g4N5ht"
+  description: "An evocative exploration of pride—the 'worst sin'—and its destructive power, tracing the tragic falls of legendary figures from Icarus to Boromir."
+  type: "video"

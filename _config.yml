@@ -15,6 +15,7 @@ nav_exclude: # The following paths are excluded from navbar
   - pages/tags.html
   - pages/404.html
   - pages/index.md
+  - pages/gems.html
 
 ### Author Info ###
 author:
@@ -26,7 +27,7 @@ author:
   linkedin: vineeta-jain-085a11196
   medium: vinjain2006
   twitter: vineeta_vj
-  youtube: channel/UCMFbfArc69d8CG972hygWUg/
+  # youtube: channel/UCMFbfArc69d8CG972hygWUg/
   hashnode: Ninjavin
 
 ### Posts ###
@@ -37,10 +38,6 @@ collections:
   projects:
     output: true
     permalink: /projects/:name
-
-### Disqus ###
-disqus:
-  shortname: ninjavin-disqus # Your website Shortname on disqus
 
 ### Analytics ###
 analytics:
