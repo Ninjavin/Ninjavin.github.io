@@ -64,5 +64,7 @@ exclude:
   - CONTRIBUTING.md
   - LICENSE
   - "*.log"
+  - vendor
+  - .bundle
 
 github: [metadata]
