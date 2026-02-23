@@ -1,0 +1,105 @@
+name: Add Daily Link + Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: "Link title"
+        required: true
+        type: string
+      url:
+        description: "Full URL (https://...)"
+        required: true
+        type: string
+      description:
+        description: "Short description"
+        required: true
+        type: string
+      type:
+        description: "Entry type"
+        required: true
+        type: choice
+        options:
+          - article
+          - video
+          - tool
+      date:
+        description: "Optional date (YYYY-MM-DD). Leave empty for today."
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  add-link-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Add link to data file
+        env:
+          INPUT_TITLE: ${{ github.event.inputs.title }}
+          INPUT_URL: ${{ github.event.inputs.url }}
+          INPUT_DESCRIPTION: ${{ github.event.inputs.description }}
+          INPUT_TYPE: ${{ github.event.inputs.type }}
+          INPUT_DATE: ${{ github.event.inputs.date }}
+        run: |
+          if [ -n "$INPUT_DATE" ]; then
+            ruby scripts/add_daily_link.rb \
+              --title "$INPUT_TITLE" \
+              --url "$INPUT_URL" \
+              --description "$INPUT_DESCRIPTION" \
+              --type "$INPUT_TYPE" \
+              --date "$INPUT_DATE"
+          else
+            ruby scripts/add_daily_link.rb \
+              --title "$INPUT_TITLE" \
+              --url "$INPUT_URL" \
+              --description "$INPUT_DESCRIPTION" \
+              --type "$INPUT_TYPE"
+          fi
+
+      - name: Commit and push changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _data/daily_links.yml
+          git commit -m "chore(daily): add link for ${{ github.event.inputs.title }}"
+          git push
+
+      - name: Build with Jekyll
+        run: bundle exec jekyll build --baseurl ""
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
