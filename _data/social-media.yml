@@ -56,6 +56,11 @@ medium:
   icon: fab fa-medium
   color: 00ab6c
 
+peerlist:
+  url: https://peerlist.io/
+  icon: fas fa-link
+  color: 00AA45
+
 soundcloud:
   url: https://www.soundcloud.com/
   icon: fab fa-soundcloud
