@@ -225,7 +225,7 @@ weight: 2
 
   .dashboard-body {
     display: grid;
-    grid-template-columns: 320px 1fr;
+    grid-template-columns: minmax(280px, 320px) minmax(0, 1fr);
     gap: 2rem;
     align-items: start;
   }
@@ -292,6 +292,9 @@ weight: 2
   .selected-link-card {
     padding: 2rem;
     position: relative;
+    overflow: hidden;
+    padding-right: 7.5rem;
+    min-height: 220px;
   }
 
   .description-text {
@@ -346,9 +349,10 @@ weight: 2
     text-align: center;
     border: 1px solid #eee;
     position: absolute;
-    top: -20px;
-    right: 30px;
+    top: 16px;
+    right: 16px;
     transform: rotate(5deg);
+    z-index: 1;
   }
 
   .leaf-header {
@@ -414,6 +418,57 @@ weight: 2
   @media (max-width: 992px) {
     .dashboard-body {
       grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .calendar-sidebar {
+      order: 1;
+    }
+
+    .content-display {
+      order: 2;
+    }
+
+    .calendar-wrapper {
+      padding: 1.1rem;
+    }
+
+    .selected-link-card {
+      padding: 1.5rem;
+      min-height: unset;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .dashboard-header h2 {
+      font-size: 1.65rem;
+    }
+
+    .calendar-day {
+      height: 34px;
+      font-size: 0.82rem;
+    }
+
+    .calendar-grid {
+      gap: 3px;
+    }
+
+    .selected-link-card {
+      padding: 1.2rem;
+    }
+
+    .selected-link-card h3 {
+      font-size: 1.2rem;
+      line-height: 1.35;
+    }
+
+    .description-text {
+      font-size: 0.9rem;
+    }
+
+    .calendar-preview-leaf {
+      display: none;
     }
   }
 </style>
