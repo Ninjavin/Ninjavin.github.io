@@ -1,0 +1,99 @@
+name: Sync Medium Posts + Deploy
+
+on:
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+    inputs:
+      medium_username:
+        description: "Optional Medium username override (without @)"
+        required: false
+        type: string
+      feed_url:
+        description: "Optional full RSS feed URL override"
+        required: false
+        type: string
+      max_posts:
+        description: "Maximum new posts to import in one run"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Sync Medium posts
+        id: sync
+        env:
+          INPUT_MEDIUM_USERNAME: ${{ github.event.inputs.medium_username }}
+          INPUT_FEED_URL: ${{ github.event.inputs.feed_url }}
+          INPUT_MAX_POSTS: ${{ github.event.inputs.max_posts }}
+        run: |
+          cmd=(ruby scripts/sync_medium_posts.rb)
+
+          if [ -n "$INPUT_MEDIUM_USERNAME" ]; then
+            cmd+=(--username "$INPUT_MEDIUM_USERNAME")
+          fi
+
+          if [ -n "$INPUT_FEED_URL" ]; then
+            cmd+=(--feed-url "$INPUT_FEED_URL")
+          fi
+
+          if [ -n "$INPUT_MAX_POSTS" ]; then
+            cmd+=(--max-posts "$INPUT_MAX_POSTS")
+          fi
+
+          "${cmd[@]}"
+
+      - name: Commit and push changes
+        if: steps.sync.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _posts
+          git commit -m "chore(blog): sync Medium posts (${{ steps.sync.outputs.imported_count }} imported)"
+          git push
+
+      - name: Build with Jekyll
+        if: steps.sync.outputs.changed == 'true'
+        run: bundle exec jekyll build --baseurl ""
+
+      - name: Upload artifact
+        if: steps.sync.outputs.changed == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+      - name: Deploy to GitHub Pages
+        if: steps.sync.outputs.changed == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: No-op when no new posts
+        if: steps.sync.outputs.changed != 'true'
+        run: echo "No new Medium posts. Skipping commit/build/deploy."
