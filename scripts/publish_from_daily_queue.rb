@@ -62,7 +62,6 @@ date = candidate["date"].to_s.strip
 
 raise ArgumentError, "Queue entry title is required." if title.empty?
 raise ArgumentError, "Queue entry url is required." if url.empty?
-raise ArgumentError, "Queue entry description is required." if description.empty?
 raise ArgumentError, "Queue entry type is required." if type.empty?
 raise ArgumentError, "Queue entry type must be one of: #{ALLOWED_TYPES.join(', ')}" unless ALLOWED_TYPES.include?(type)
 

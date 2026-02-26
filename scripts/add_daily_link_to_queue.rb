@@ -10,7 +10,7 @@ DAILY_FILE = "_data/daily_links.yml"
 ALLOWED_TYPES = %w[article video tool].freeze
 
 def usage!
-  warn "Usage: ruby scripts/add_daily_link_to_queue.rb --title \"...\" --url \"...\" --description \"...\" --type article|video|tool [--date YYYY-MM-DD]"
+  warn "Usage: ruby scripts/add_daily_link_to_queue.rb --title \"...\" --url \"...\" --type article|video|tool [--description \"...\"] [--date YYYY-MM-DD]"
   exit 1
 end
 
@@ -61,7 +61,6 @@ begin
 
   raise ArgumentError, "title is required" if title.empty?
   raise ArgumentError, "url is required" if url.empty?
-  raise ArgumentError, "description is required" if description.empty?
   raise ArgumentError, "type is required" if type.empty?
 
   unless ALLOWED_TYPES.include?(type)

@@ -1,15 +1,8 @@
-name: Add Or Queue Daily Link
+name: Add Daily Link To Queue
 
 on:
   workflow_dispatch:
     inputs:
-      mode:
-        description: "How to handle this link"
-        required: true
-        type: choice
-        options:
-          - publish-now
-          - enqueue
       title:
         description: "Link title"
         required: true
@@ -19,8 +12,8 @@ on:
         required: true
         type: string
       description:
-        description: "Short description"
-        required: true
+        description: "Short description (optional)"
+        required: false
         type: string
       type:
         description: "Entry type"
@@ -30,81 +23,36 @@ on:
           - article
           - video
           - tool
-      date:
-        description: "Optional date (YYYY-MM-DD). Leave empty for today (publish-now) or no fixed date (enqueue)."
-        required: false
-        type: string
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
 
 jobs:
-  add-or-queue-link:
+  enqueue-link:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configure GitHub Pages
-        if: github.event.inputs.mode == 'publish-now'
-        uses: actions/configure-pages@v5
-
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3"
-          bundler-cache: ${{ github.event.inputs.mode == 'publish-now' }}
+          bundler-cache: false
 
-      - name: Add or queue link
+      - name: Add link to queue
         env:
-          INPUT_MODE: ${{ github.event.inputs.mode }}
           INPUT_TITLE: ${{ github.event.inputs.title }}
           INPUT_URL: ${{ github.event.inputs.url }}
           INPUT_DESCRIPTION: ${{ github.event.inputs.description }}
           INPUT_TYPE: ${{ github.event.inputs.type }}
-          INPUT_DATE: ${{ github.event.inputs.date }}
         run: |
-          if [ "$INPUT_MODE" = "publish-now" ]; then
-            if [ -n "$INPUT_DATE" ]; then
-              ruby scripts/add_daily_link.rb \
-                --title "$INPUT_TITLE" \
-                --url "$INPUT_URL" \
-                --description "$INPUT_DESCRIPTION" \
-                --type "$INPUT_TYPE" \
-                --date "$INPUT_DATE"
-            else
-              ruby scripts/add_daily_link.rb \
-                --title "$INPUT_TITLE" \
-                --url "$INPUT_URL" \
-                --description "$INPUT_DESCRIPTION" \
-                --type "$INPUT_TYPE"
-            fi
-          else
-            if [ -n "$INPUT_DATE" ]; then
-              ruby scripts/add_daily_link_to_queue.rb \
-                --title "$INPUT_TITLE" \
-                --url "$INPUT_URL" \
-                --description "$INPUT_DESCRIPTION" \
-                --type "$INPUT_TYPE" \
-                --date "$INPUT_DATE"
-            else
-              ruby scripts/add_daily_link_to_queue.rb \
-                --title "$INPUT_TITLE" \
-                --url "$INPUT_URL" \
-                --description "$INPUT_DESCRIPTION" \
-                --type "$INPUT_TYPE"
-            fi
-          fi
+          ruby scripts/add_daily_link_to_queue.rb \
+            --title "$INPUT_TITLE" \
+            --url "$INPUT_URL" \
+            --description "${INPUT_DESCRIPTION:-}" \
+            --type "$INPUT_TYPE"
 
       - name: Commit and push changes
         run: |
@@ -115,26 +63,6 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ "${{ github.event.inputs.mode }}" = "publish-now" ]; then
-            git add _data/daily_links.yml
-            git commit -m "chore(daily): add link for ${{ github.event.inputs.title }}"
-          else
-            git add _data/daily_links_queue.yml
-            git commit -m "chore(daily): enqueue link for ${{ github.event.inputs.title }}"
-          fi
+          git add _data/daily_links_queue.yml
+          git commit -m "chore(daily): enqueue link for ${{ github.event.inputs.title }}"
           git push
-
-      - name: Build with Jekyll
-        if: github.event.inputs.mode == 'publish-now'
-        run: bundle exec jekyll build --baseurl ""
-
-      - name: Upload artifact
-        if: github.event.inputs.mode == 'publish-now'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./_site
-
-      - name: Deploy to GitHub Pages
-        if: github.event.inputs.mode == 'publish-now'
-        id: deployment
-        uses: actions/deploy-pages@v4
