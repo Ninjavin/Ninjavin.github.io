@@ -1,25 +1,29 @@
 ---
-- date: "2026-02-26"
+- date: '2026-02-27'
+  title: Sympathy for the Villain.
+  url: https://youtu.be/YzfUj-m2I6I?si=wfVwgH-1_SjTR0G6
+  description: ''
+  type: video
+- date: '2026-02-26'
   title: How to become dangerously self-educated
   url: https://open.substack.com/pub/profoundideas/p/how-to-become-dangerously-self-educated?r=5f1m74&utm_campaign=post&utm_medium=web
   description: Build.
   type: article
-- date: "2026-02-25"
+- date: '2026-02-25'
   title: The value of taking ownership in your life
   url: https://mindfulambition.net/ownership/
   description: It’s time to take ownership. Time to take control. Let’s do this.
   type: article
-- date: "2026-02-24"
+- date: '2026-02-24'
   title: How to fix your entire life in 1 day
   url: https://x.com/thedankoe/status/2010751592346030461
-  description:
-    A viral post on X sharing a thought-provoking article about completely
+  description: A viral post on X sharing a thought-provoking article about completely
     resetting your mindset and direction in just one day.
   type: article
-- date: "2026-02-23"
+- date: '2026-02-23'
   title: The 'Tarantino' Method
   url: https://youtu.be/Yp3ZQD5HIig?si=ozm7-4TcN6MGZ90G
-  description: ""
+  description: ''
   type: video
 - date: 2026-02-22
   title: The Smarter Choice
@@ -29,15 +33,13 @@
 - date: 2026-02-21
   title: Reflections on 10,000 hours of programming
   url: https://mattrickard.com/reflections-on-10-000-hours-of-programming
-  description:
-    A list of 31 insights and hard-learned lessons on pure coding, focusing
+  description: A list of 31 insights and hard-learned lessons on pure coding, focusing
     on technical mastery, simple design, and the art of deliberate practice.
   type: article
 - date: 2026-02-20
   title: 50 ideas that changed my life
   url: https://perell.com/essay/50-ideas-that-changed-my-life/
-  description:
-    These are some guiding principles and the light of one's intellectual
+  description: These are some guiding principles and the light of one's intellectual
     life. All of them will help you think better, and I hope they inspire curiosity.
   type: article
 - date: 2026-02-19
@@ -48,7 +50,6 @@
 - date: 2026-02-18
   title: PRIDE. The Worst Sin
   url: https://youtu.be/lZgzk070Rws?si=F7us1ypzg1g4N5ht
-  description:
-    An evocative exploration of pride—the 'worst sin'—and its destructive
+  description: An evocative exploration of pride—the 'worst sin'—and its destructive
     power, tracing the tragic falls of legendary figures from Icarus to Boromir.
   type: video
