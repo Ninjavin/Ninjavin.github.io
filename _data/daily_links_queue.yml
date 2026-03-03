@@ -4,3 +4,8 @@
   type: article
   description: Becoming "dangerously articulate" means learning to effectively express
     yourself in a world that often discourages critical thinking and creative communication.
+- title: MyFridgeFood - Home
+  url: https://myfridgefood.com/
+  type: tool
+  description: A tool that helps you keep track of the food in your fridge and identify
+    what's going bad!
