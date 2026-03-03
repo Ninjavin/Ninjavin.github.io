@@ -11,3 +11,7 @@
   description:
     Click the red button and discover random cool websites, from quirky online games
     to weirdly fascinating facts, all hidden in plain sight!
+- title: MyFridgeFood - Home
+  url: https://myfridgefood.com/
+  type: tool
+  description: A tool that helps you with food recipes from your fridge items!
