@@ -9,3 +9,42 @@ remote_projects:
 ---
 
 {% include projects/index.html %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const projectCards = document.querySelectorAll(
+      'a.project.card[href$=".mp4"], a.project.card[href*=".mp4?"]'
+    );
+
+    projectCards.forEach((card) => {
+      const videoSrc = card.getAttribute("href");
+      if (!videoSrc) return;
+
+      const existingVideo = card.querySelector("video.card-img-top");
+      if (existingVideo) return;
+
+      const existingImage = card.querySelector("img");
+      const cardBody = card.querySelector(".card-body");
+      const video = document.createElement("video");
+      video.className = existingImage ? existingImage.className : "card-img-top";
+      video.autoplay = true;
+      video.loop = true;
+      video.muted = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+
+      const source = document.createElement("source");
+      source.src = videoSrc;
+      source.type = "video/mp4";
+      video.appendChild(source);
+
+      if (existingImage && existingImage.parentNode) {
+        existingImage.parentNode.replaceChild(video, existingImage);
+      } else if (cardBody) {
+        card.insertBefore(video, cardBody);
+      } else {
+        card.insertBefore(video, card.firstChild);
+      }
+    });
+  });
+</script>
