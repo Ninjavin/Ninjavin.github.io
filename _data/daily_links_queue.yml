@@ -2,21 +2,24 @@
 - title: McBroken - McDonald's Ice Cream Machine Broken?
   url: https://mcbroken.com/
   type: tool
-  description: This is a fun little tool that helps you figure out if your local McDonald's
+  description:
+    This is a fun little tool that helps you figure out if your local McDonald's
     ice cream machine is currently broken or not!
-- title: 'City Walks Live: Virtual Tours in the World. Travels, Flights & Hotels'
+- title: "City Walks Live: Virtual Tours in the World. Travels, Flights & Hotels"
   url: https://citywalks.live/
   type: tool
   description: This platform offers immersive virtual tours of cities worldwide.
 - title: My 90's TV!
   url: https://90s.myretrotvs.com/
   type: tool
-  description: Relive your childhood by streaming 90's TV shows and movies with the
+  description:
+    Relive your childhood by streaming 90's TV shows and movies with the
     same old-school commercials and ads that made the experience so nostalgic!
 - title: Startups.RIP - Dead YC Startups, Alive Ideas
   url: https://startups.rip/
   type: tool
-  description: Every failed startup is a lesson for founders, and this visualizes
+  description:
+    Every failed startup is a lesson for founders, and this visualizes
     the ones that didn''t make it through YC's accelerator program, but still share
     valuable ideas.
 - title: The Hidden Math Behind Every Decision You Make
@@ -34,9 +37,7 @@
 - title: How I'm Fixing My Overstimulated Brain - YouTube
   url: https://youtu.be/ylgguuxREy4?si=_rIZ6UE-PtCfKmWK
   type: video
-- title: Just a moment...
+- title: The wrong train theory
   url: https://medium.com/@martinroncales/the-wrong-train-theory-7a25ac52ad55
   type: article
-  description: I apologize, but it seems you didn't provide the article or tool title
-    and content. Please share it with me, and I'll be happy to provide a one-line
-    gist that sounds like a quick takeaway!
+  description: It's not about the train.
