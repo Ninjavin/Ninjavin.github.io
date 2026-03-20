@@ -1,4 +1,10 @@
 ---
+- date: '2026-03-19'
+  title: McBroken - McDonald's Ice Cream Machine Broken?
+  url: https://mcbroken.com/
+  description: This is a fun little tool that helps you figure out if your local McDonald's
+    ice cream machine is currently broken or not!
+  type: tool
 - date: '2026-03-18'
   title: Why Can’t I Enjoy Anything Anymore - by John Kim
   url: https://substack.com/home/post/p-186445618
