@@ -1,4 +1,24 @@
 ---
+- date: '2026-03-26'
+  title: How I'm Fixing My Overstimulated Brain - YouTube
+  url: https://youtu.be/ylgguuxREy4?si=_rIZ6UE-PtCfKmWK
+  description: ''
+  type: video
+- date: '2026-03-25'
+  title: SimplyUp.io
+  url: https://simplyup.io/
+  description: Fun browser game!
+  type: tool
+- date: '2026-03-24'
+  title: Why We Avoid the Things That Make Us the Happiest
+  url: https://katharinanguyenfaber.substack.com/p/why-we-avoid-the-things-that-make
+  description: We often know what makes us happy, but why do we avoid pursuing it.
+  type: article
+- date: '2026-03-23'
+  title: The Hidden Math Behind Every Decision You Make
+  url: https://x.com/zodchiii/status/2030267008625873324
+  description: Make a better decision.
+  type: article
 - date: '2026-03-22'
   title: Startups.RIP - Dead YC Startups, Alive Ideas
   url: https://startups.rip/
