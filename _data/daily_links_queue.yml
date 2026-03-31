@@ -10,10 +10,14 @@
 - title: Burn the ships and sail away
   url: https://mannerofspeaking.org/2015/01/03/burning-the-ships-and-sailing-away/
   type: article
-  description:
-    '"Sometimes, you need to burn your ships and take a bold leap of faith
+  description: '"Sometimes, you need to burn your ships and take a bold leap of faith
     to truly commit to a new path or goal, leaving no room for regret or turning back."'
 - title: How Do We Create Sudoku?
   url: https://www.sudokuoftheday.com/creation
   type: article
-  description: "Interesting read!"
+  description: Interesting read!
+- title: No title
+  url: https://x.com/babybeginner/status/2038760137528406023
+  type: tool
+  description: '"Enable JavaScript or switch to a supported browser to keep using
+    this website!"'
