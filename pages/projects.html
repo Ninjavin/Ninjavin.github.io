@@ -12,8 +12,94 @@ remote_projects:
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    let activeModal = null;
+
+    function closeVideoModal() {
+      if (!activeModal) return;
+
+      const video = activeModal.querySelector("video");
+      if (video) {
+        video.pause();
+        video.removeAttribute("src");
+        video.load();
+      }
+
+      activeModal.remove();
+      activeModal = null;
+      document.body.style.overflow = "";
+    }
+
+    function openVideoModal(videoSrc) {
+      closeVideoModal();
+
+      const overlay = document.createElement("div");
+      overlay.setAttribute("role", "dialog");
+      overlay.setAttribute("aria-modal", "true");
+      overlay.setAttribute("aria-label", "Project demo video");
+      overlay.style.position = "fixed";
+      overlay.style.inset = "0";
+      overlay.style.zIndex = "9999";
+      overlay.style.display = "flex";
+      overlay.style.alignItems = "center";
+      overlay.style.justifyContent = "center";
+      overlay.style.padding = "1.5rem";
+      overlay.style.background = "rgba(0, 0, 0, 0.82)";
+
+      const container = document.createElement("div");
+      container.style.position = "relative";
+      container.style.width = "min(960px, 100%)";
+      container.style.maxHeight = "100%";
+
+      const closeButton = document.createElement("button");
+      closeButton.type = "button";
+      closeButton.setAttribute("aria-label", "Close video");
+      closeButton.textContent = "Close";
+      closeButton.style.position = "absolute";
+      closeButton.style.top = "-2.5rem";
+      closeButton.style.right = "0";
+      closeButton.style.border = "0";
+      closeButton.style.borderRadius = "999px";
+      closeButton.style.padding = "0.45rem 0.85rem";
+      closeButton.style.cursor = "pointer";
+
+      const video = document.createElement("video");
+      video.controls = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      video.style.display = "block";
+      video.style.width = "100%";
+      video.style.maxHeight = "80vh";
+      video.style.borderRadius = "0.75rem";
+      video.style.background = "#000";
+      video.src = videoSrc;
+
+      closeButton.addEventListener("click", closeVideoModal);
+      overlay.addEventListener("click", function (event) {
+        if (event.target === overlay) {
+          closeVideoModal();
+        }
+      });
+
+      container.addEventListener("click", function (event) {
+        event.stopPropagation();
+      });
+
+      container.appendChild(closeButton);
+      container.appendChild(video);
+      overlay.appendChild(container);
+      document.body.appendChild(overlay);
+      document.body.style.overflow = "hidden";
+      activeModal = overlay;
+    }
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeVideoModal();
+      }
+    });
+
     const projectCards = document.querySelectorAll(
-      'a.project.card[href$=".mp4"], a.project.card[href*=".mp4?"]'
+      'a.project.card[href$=".mp4"], a.project.card[href*=".mp4?"], a.project.card[href$=".mov"], a.project.card[href*=".mov?"], a.project.card[href*="github.com/user-attachments/assets/"]'
     );
 
     projectCards.forEach((card) => {
@@ -35,7 +121,6 @@ remote_projects:
 
       const source = document.createElement("source");
       source.src = videoSrc;
-      source.type = "video/mp4";
       video.appendChild(source);
 
       if (existingImage && existingImage.parentNode) {
@@ -45,6 +130,22 @@ remote_projects:
       } else {
         card.insertBefore(video, card.firstChild);
       }
+
+      card.addEventListener("click", function (event) {
+        if (
+          event.defaultPrevented ||
+          event.metaKey ||
+          event.ctrlKey ||
+          event.shiftKey ||
+          event.altKey ||
+          event.button !== 0
+        ) {
+          return;
+        }
+
+        event.preventDefault();
+        openVideoModal(videoSrc);
+      });
     });
   });
 </script>
