@@ -113,15 +113,23 @@ remote_projects:
       const cardBody = card.querySelector(".card-body");
       const video = document.createElement("video");
       video.className = existingImage ? existingImage.className : "card-img-top";
-      video.autoplay = true;
-      video.loop = true;
+      video.controls = false;
+      video.autoplay = false;
+      video.loop = false;
       video.muted = true;
       video.playsInline = true;
       video.preload = "metadata";
+      video.setAttribute("aria-hidden", "true");
+      video.setAttribute("tabindex", "-1");
 
       const source = document.createElement("source");
       source.src = videoSrc;
       video.appendChild(source);
+
+      video.addEventListener("loadedmetadata", function () {
+        video.currentTime = 0.1;
+        video.pause();
+      });
 
       if (existingImage && existingImage.parentNode) {
         existingImage.parentNode.replaceChild(video, existingImage);

@@ -1,5 +1,6 @@
 ---
 name: Awkward Tools
+order: 2
 tools: [nextjs, groq, netlify, cursor]
 image: https://i.imgur.com/SjVqWc0.png
 description: Your digital companion for overthinking, crafting perfect replies, and getting out of awkward situations.

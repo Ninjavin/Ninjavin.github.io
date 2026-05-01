@@ -3,6 +3,7 @@
 
 require "cgi"
 require "date"
+require "digest"
 require "open-uri"
 require "rss"
 require "set"
@@ -13,6 +14,13 @@ require "yaml"
 POSTS_DIR = "_posts"
 CONFIG_FILE = "_config.yml"
 DEFAULT_MAX_POSTS = 5
+CARD_VARIANTS = [
+  { style: "border", color: "primary" },
+  { style: "fill", color: "secondary" },
+  { style: "border", color: "success" },
+  { style: "fill", color: "info" },
+  { style: "border", color: "danger" }
+].freeze
 
 def usage!
   warn "Usage: ruby scripts/sync_medium_posts.rb [--username <medium-username>] [--feed-url <rss-url>] [--max-posts <number>]"
@@ -133,6 +141,11 @@ def yaml_quote(value)
   "\"#{escaped}\""
 end
 
+def card_variant_for(key)
+  index = Digest::SHA256.hexdigest(key.to_s).hex % CARD_VARIANTS.length
+  CARD_VARIANTS[index]
+end
+
 def build_post_content(item, url, guid)
   title = strip_html(item.title)
   title = "Untitled Medium Post" if title.empty?
@@ -152,13 +165,14 @@ def build_post_content(item, url, guid)
                end
   tags = categories.reject(&:empty?).uniq
   tags = ["medium"] if tags.empty?
+  variant = card_variant_for(guid.empty? ? url : guid)
 
   <<~POST
     ---
     title: #{yaml_quote(title)}
     tags: [#{tags.map { |tag| yaml_quote(tag) }.join(", ")}]
-    style: border
-    color: warning
+    style: #{variant[:style]}
+    color: #{variant[:color]}
     description: #{yaml_quote(description)}
     external_url: #{yaml_quote(url)}
     medium_guid: #{yaml_quote(guid)}
